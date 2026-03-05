@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лагер Мальовица — Планински Чудеса</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;700;800;900&family=Mulish:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --bg: #f8f7f4;
+      --bg-section: #ffffff;
+      --surface: #ffffff;
+      --teal: #007A7A;
+      --teal-light: rgba(0, 122, 122, 0.08);
+      --teal-hover: #005858;
+      --text: #1a2e25;
+      --text-soft: #4a6358;
+      --text-muted: #8aaa9c;
+      --border: rgba(0, 0, 0, 0.07);
+      --r-sm: 10px;
+      --r-md: 18px;
+      --r-lg: 28px;
+      --r-xl: 48px;
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Mulish', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── Utility ───────────────────────────────────────────── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: 'Mulish', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    /* ─── Scroll-reveal ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       1. NAV
+    ════════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition:
+        background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        backdrop-filter 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.22) 0%,
+          rgba(255, 255, 255, 0.04) 100%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+
+    #nav.scrolled::before {
+      opacity: 1;
+    }
+
+    #nav .nav-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    #nav.scrolled {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(1px) brightness(1.02);
+      -webkit-backdrop-filter: blur(1px) brightness(1.02);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.90),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+        0 8px 40px rgba(0, 0, 0, 0.04);
+      padding: 10px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--surface);
+      letter-spacing: -0.01em;
+      transition: color 0.35s;
+    }
+
+    #nav.scrolled .nav-logo {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 50px;
+      background: var(--teal);
+      color: #fff;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--teal-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       2. HERO
+    ════════════════════════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #2d5a4a;
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a4a3a 0%, #007A7A 50%, #2d8c7a 100%);
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .hero-bg.has-image::before {
+      opacity: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(5, 20, 12, 0.18) 0%,
+          rgba(5, 20, 12, 0.55) 60%,
+          rgba(5, 20, 12, 0.82) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 120px 24px 0;
+      max-width: 1160px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Mulish', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.80);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 900;
+      font-size: clamp(64px, 10vw, 110px);
+      color: #fff;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-family: 'Mulish', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.80);
+      margin-bottom: 0;
+    }
+
+    /* ── Hero info bar ── */
+    .hero-info-bar {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 40px auto 0;
+      padding: 0 24px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      /* override padding for proper bar look */
+      padding: 0;
+    }
+
+    /* wrap bar in its own container */
+    .hero-bar-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 0 24px 56px;
+      max-width: 1160px;
+      margin: 40px auto 0;
+    }
+
+    .hero-info-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+
+    .hero-info-item {
+      padding: 18px 20px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-info-item:last-of-type {
+      border-right: none;
+    }
+
+    .hero-info-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 5px;
+    }
+
+    .hero-info-value {
+      font-family: 'Geologica', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .hero-info-cta {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-info-cta a {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      background: var(--teal);
+      color: #fff;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-info-cta a:hover {
+      background: var(--teal-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       3. ОСНОВНА ИНФОРМАЦИЯ
+    ════════════════════════════════════════════════════════════ */
+    #about {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-text .section-title {
+      font-size: clamp(22px, 2.6vw, 28px);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-image-wrap {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      position: relative;
+    }
+
+    .about-image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-stat-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .about-stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-sm);
+      background: var(--teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .about-stat-content {}
+
+    .about-stat-val {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    .about-stat-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       4. ЗА КОГО Е ЛАГЕРЪТ
+    ════════════════════════════════════════════════════════════ */
+    #for-who {
+      padding: 96px 0;
+      background: var(--bg-section);
+    }
+
+    .for-who-header {
+      margin-bottom: 48px;
+    }
+
+    .for-who-header .section-title {
+      font-size: clamp(26px, 3.5vw, 36px);
+    }
+
+    .for-who-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .for-who-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 36px 32px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .for-who-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .for-who-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      background: var(--teal-light);
+      color: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .for-who-card-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .for-who-card-text {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       5. НИВО И НАТОВАРВАНЕ
+    ════════════════════════════════════════════════════════════ */
+    #level {
+      padding: 96px 0;
+      background: var(--bg-section);
+    }
+
+    .level-header {
+      margin-bottom: 48px;
+    }
+
+    .level-header .section-title {
+      font-size: clamp(26px, 3.5vw, 36px);
+    }
+
+    .level-header p {
+      font-size: 16px;
+      color: var(--text-soft);
+      margin: 16px auto 0;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .expectations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .expectation-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+    }
+
+    .exp-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-md);
+      background: var(--teal-light);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
+
+    .exp-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .exp-text {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       6. TIMELINE — Програма
+    ════════════════════════════════════════════════════════════ */
+    #timeline {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .timeline-header .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    .timeline-header p {
+      font-size: 16px;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+    .timeline-track {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--teal) 8%, var(--teal) 92%, transparent);
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 64px;
+      align-items: start;
+    }
+
+    .tl-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-left {
+      grid-column: 1;
+      padding-right: 36px;
+      text-align: right;
+    }
+
+    .tl-dot {
+      grid-column: 2;
+      display: flex;
+      justify-content: center;
+      padding-top: 10px;
+    }
+
+    .tl-right {
+      grid-column: 3;
+      padding-left: 36px;
+    }
+
+    .tl-item.odd .tl-left {
+      order: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .tl-item.odd .tl-dot {
+      order: 2;
+    }
+
+    .tl-item.odd .tl-right {
+      order: 3;
+    }
+
+    .tl-item.even .tl-left {
+      order: 1;
+    }
+
+    .tl-item.even .tl-dot {
+      order: 2;
+    }
+
+    .tl-item.even .tl-right {
+      order: 3;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .tl-dot-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2.5px solid var(--teal);
+      box-shadow: 0 0 0 5px rgba(0, 122, 122, 0.12);
+      flex-shrink: 0;
+    }
+
+    .tl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .tl-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #b8d4cc, #8abdb2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tl-card-img img {
+      position: absolute;
+      inset: 0;
+    }
+
+    .tl-card-img .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: rgba(0, 122, 122, 0.35);
+    }
+
+    .tl-card-body {
+      padding: 20px 22px;
+    }
+
+    .tl-day-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .tl-card-body h3 {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .tl-card-body p {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .tl-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tl-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: var(--teal-light);
+      color: var(--teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       7. НАСТАНЯВАНЕ — Хижата
+    ════════════════════════════════════════════════════════════ */
+    #hut {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .hut-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .hut-image-wrap {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #c8ddd6, #a4c4bc);
+      position: relative;
+    }
+
+    .hut-image-wrap img {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hut-image-wrap .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: rgba(0, 122, 122, 0.3);
+    }
+
+    .hut-altitude {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 5vw, 70px);
+      color: var(--teal);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .hut-altitude-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hut-text .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      margin-bottom: 16px;
+    }
+
+    .hut-text p {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .hut-details {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hut-detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .hut-detail-row i {
+      color: var(--teal);
+      font-size: 14px;
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       8. GUIDE — Водачът
+    ════════════════════════════════════════════════════════════ */
+    #guide {
+      padding: 96px 0;
+      background: var(--teal-light);
+    }
+
+    .guide-inner {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .guide-photo-wrap {
+      position: relative;
+    }
+
+    .guide-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #a4c4bc, #6aada2);
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0, 122, 122, 0.18);
+    }
+
+    .guide-photo img {
+      position: absolute;
+      inset: 0;
+    }
+
+    .guide-photo .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      color: rgba(0, 122, 122, 0.3);
+    }
+
+    .guide-text .section-title {
+      font-size: clamp(24px, 3vw, 34px);
+      margin-bottom: 16px;
+    }
+
+    .guide-text p {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .guide-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .guide-stat-num {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .guide-stat-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       9. ГАЛЕРИЯ
+    ════════════════════════════════════════════════════════════ */
+    #gallery {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .gallery-header .section-title {
+      font-size: clamp(26px, 3.5vw, 36px);
+    }
+
+    .gallery-masonry {
+      columns: 3;
+      column-gap: 16px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item-inner {
+      position: relative;
+      background: linear-gradient(135deg, #c4d8d2, #8abdb2);
+      overflow: hidden;
+    }
+
+    .gallery-item:nth-child(1) .gallery-item-inner {
+      aspect-ratio: 3/4;
+    }
+
+    .gallery-item:nth-child(2) .gallery-item-inner {
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:nth-child(3) .gallery-item-inner {
+      aspect-ratio: 1/1;
+    }
+
+    .gallery-item:nth-child(4) .gallery-item-inner {
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:nth-child(5) .gallery-item-inner {
+      aspect-ratio: 3/4;
+    }
+
+    .gallery-item:nth-child(6) .gallery-item-inner {
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item .img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: rgba(0, 122, 122, 0.3);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 122, 122, 0.30);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       10. ПРАКТИЧЕСКА ИНФОРМАЦИЯ
+    ════════════════════════════════════════════════════════════ */
+    #practical {
+      padding: 96px 0;
+      background: var(--bg-section);
+    }
+
+    .practical-header {
+      margin-bottom: 48px;
+    }
+
+    .practical-header .section-title {
+      font-size: clamp(26px, 3.5vw, 36px);
+    }
+
+    .practical-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .practical-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+    }
+
+    .practical-card-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .practical-card-title i {
+      color: var(--teal);
+      font-size: 14px;
+    }
+
+    .practical-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .practical-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .practical-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .practical-table td {
+      padding: 11px 0;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    .practical-table td:first-child {
+      color: var(--text-muted);
+      font-weight: 600;
+      width: 45%;
+      padding-right: 12px;
+    }
+
+    .practical-table td:last-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .practical-highlight {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--teal);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       11. ЕКИПИРОВКА
+    ════════════════════════════════════════════════════════════ */
+    #gear {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+
+    .gear-header {
+      margin-bottom: 48px;
+    }
+
+    .gear-header .section-title {
+      font-size: clamp(26px, 3.5vw, 36px);
+    }
+
+    .gear-header p {
+      font-size: 16px;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+    .gear-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .gear-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+    }
+
+    .gear-card-title {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gear-card.mandatory .gear-card-title i {
+      color: var(--teal);
+    }
+
+    .gear-card.optional .gear-card-title i {
+      color: var(--text-muted);
+    }
+
+    .gear-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .gear-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .gear-list li i {
+      font-size: 12px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .gear-card.mandatory .gear-list li i {
+      color: var(--teal);
+    }
+
+    .gear-card.optional .gear-list li i {
+      color: var(--text-muted);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       12. ФОРМА
+    ════════════════════════════════════════════════════════════ */
+    #register {
+      padding: 96px 0;
+      background: var(--bg-section);
+    }
+
+    .register-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .register-header .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      margin-bottom: 12px;
+    }
+
+    .reg-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 56px 64px;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    .form-section-label {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-section-label i {
+      font-size: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-row.cols-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row.cols-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .form-row.cols-4 {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+
+    .form-row.cols-1 {
+      grid-template-columns: 1fr;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-family: 'Mulish', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(0, 122, 122, 0.1);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 96px;
+      line-height: 1.6;
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: -2px;
+      line-height: 1.5;
+    }
+
+    .form-field:has([required])>label::after {
+      content: ' *';
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .form-field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238aaa9c' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-soft);
+      background: var(--bg);
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      user-select: none;
+    }
+
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+
+    .radio-option:has(input:checked) {
+      border-color: var(--teal);
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    .gdpr-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .gdpr-row input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      accent-color: var(--teal);
+      cursor: pointer;
+      margin-top: 2px;
+    }
+
+    .gdpr-row label {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .gdpr-row label a {
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .form-submit {
+      margin-top: 36px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-primary {
+      font-family: 'Mulish', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 15px 40px;
+      border-radius: 50px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 122, 122, 0.28);
+    }
+
+    .form-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       14. FOOTER
+    ════════════════════════════════════════════════════════════ */
+    #footer {
+      padding: 40px 0;
+      background: var(--text);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Geologica', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .footer-contact {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-contact a {
+      color: rgba(138, 170, 156, 0.9);
+      transition: color 0.2s;
+    }
+
+    .footer-contact a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .about-inner {
+        gap: 48px;
+      }
+
+      .hut-inner {
+        gap: 48px;
+      }
+
+      .guide-inner {
+        grid-template-columns: 240px 1fr;
+        gap: 48px;
+      }
+
+      .gallery-masonry {
+        columns: 2;
+      }
+
+      .safety-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .expectations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      /* Hero info bar */
+      .hero-info-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-info-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .hero-info-cta {
+        grid-column: 1 / -1;
+        justify-content: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 16px 24px;
+      }
+
+      /* About */
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      /* For who */
+      .for-who-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Level */
+      .expectations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Hut */
+      .hut-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .hut-image-wrap {
+        order: -1;
+      }
+
+      /* Timeline */
+      .timeline-track::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .tl-item {
+        grid-template-columns: 40px 1fr;
+        gap: 0;
+      }
+
+      .tl-item.odd .tl-left,
+      .tl-item.even .tl-left {
+        display: none;
+      }
+
+      .tl-item.odd .tl-right,
+      .tl-item.even .tl-right {
+        opacity: 1;
+        pointer-events: auto;
+        order: 3;
+        padding-left: 20px;
+        padding-right: 0;
+        text-align: left;
+      }
+
+      .tl-item.even .tl-dot,
+      .tl-item.odd .tl-dot {
+        order: 1;
+        grid-column: 1;
+        justify-content: flex-start;
+        padding-left: 11px;
+      }
+
+      .tl-item.even .tl-right,
+      .tl-item.odd .tl-right {
+        order: 2;
+        grid-column: 2;
+      }
+
+      /* Guide */
+      .guide-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-photo-wrap {
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .guide-text {
+        text-align: center;
+      }
+
+      .guide-stats {
+        justify-content: center;
+      }
+
+      /* Safety */
+      .safety-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Gallery */
+      .gallery-masonry {
+        columns: 1;
+      }
+
+      /* Practical & Gear */
+      .practical-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gear-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Form */
+      .reg-form {
+        padding: 36px 24px;
+      }
+
+      .form-row.cols-2,
+      .form-row.cols-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row.cols-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-submit {
+        justify-content: stretch;
+      }
+
+      .form-submit .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Footer */
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       1. NAV
+  ══════════════════════════════════════════════════ -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <span class="nav-logo">Планински Чудеса</span>
+      <a href="#register" class="nav-cta">Форма за участие</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════
+       2. HERO
+  ══════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg">
+      <img src="images/hero.jpg" alt="Мальовица" onerror="this.style.display='none'">
+    </div>
+    <div class="hero-overlay"></div>
+    <div style="position:relative;z-index:1;width:100%;">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Рила &nbsp;·&nbsp; Май 2026</p>
+        <h1 class="hero-title">Лагер<br>Мальовица</h1>
+        <p class="hero-sub">Планински лагер в района на хижа Мальовица</p>
+      </div>
+      <div class="hero-bar-wrap">
+        <div class="hero-info-bar">
+          <div class="hero-info-item">
+            <div class="hero-info-label">Дати</div>
+            <div class="hero-info-value">1–5 май 2026</div>
+          </div>
+          <div class="hero-info-item">
+            <div class="hero-info-label">Продължителност</div>
+            <div class="hero-info-value">5 дни / 4 нощи</div>
+          </div>
+          <div class="hero-info-item">
+            <div class="hero-info-label">Ниво</div>
+            <div class="hero-info-value" style="display:flex; gap:6px; align-items:center; padding-top:2px;">
+              <i class="fa-solid fa-circle"></i>
+              <i class="fa-solid fa-circle"></i>
+              <i class="fa-solid fa-circle"></i>
+              <i class="fa-solid fa-circle-half-stroke"></i>
+              <i class="fa-regular fa-circle" style="opacity:0.7;"></i>
+            </div>
+          </div>
+          <div class="hero-info-item">
+            <div class="hero-info-label">Подходящо за</div>
+            <div class="hero-info-value">16+ години</div>
+          </div>
+          <div class="hero-info-cta">
+            <a href="#register">Форма за участие</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       3. ОСНОВНА ИНФОРМАЦИЯ
+  ══════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p class="section-label">Пътеката като учител</p>
+          <h2 class="section-title">Опит, който се изгражда крачка по крачка</h2>
+          <p style="margin-top:20px">
+            Защото е различно да си в планината, отколкото да четеш или слушаш за нея. Там всяка крачка има значение,
+            всяко изкачване изисква усилие, а всяка почивка се усеща заслужена.
+          </p>
+          <p>
+            Лагерът дава възможност да провериш колко можеш, да се научиш да се движиш уверено по пътека и да бъдеш част
+            от група, в която хората разчитат един на друг.
+          </p>
+          <p>
+            Това не е състезание, а преживяване, в което постепенно разбираш повече
+            за собствените си възможности.
+          </p>
+        </div>
+        <div class="about-image-wrap reveal" style="transition-delay:0.12s">
+          <img src="images/why.jpg" alt="Участници на върха">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       4. ЗА КОГО Е ЛАГЕРЪТ
+  ══════════════════════════════════════════════════ -->
+  <section id="for-who">
+    <div class="container">
+      <div class="for-who-header reveal" style="text-align: center; max-width: 680px; margin: 0 auto 48px;">
+        <p class="section-label">текст</p>
+        <h2 class="section-title">Лагерът накратко</h2>
+      </div>
+      <div class="for-who-grid">
+        <div class="for-who-card reveal">
+          <div class="for-who-icon">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <h3 class="for-who-card-title">Базов лагер</h3>
+          <p class="for-who-card-text">
+            хижа Мальовица · 1960 м н.в.
+          </p>
+        </div>
+        <div class="for-who-card reveal" style="transition-delay:0.1s">
+          <div class="for-who-icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <h3 class="for-who-card-title">Продължителност</h3>
+          <p class="for-who-card-text">
+            5 дни / 4 нощи
+          </p>
+        </div>
+        <div class="for-who-card reveal" style="transition-delay:0.2s">
+          <div class="for-who-icon">
+            <i class="fa-solid fa-person-hiking"></i>
+          </div>
+          <h3 class="for-who-card-title">Преходи</h3>
+          <p class="for-who-card-text">
+            3 дни в алпийската част на Рила
+          </p>
+        </div>
+        <div class="for-who-card reveal" style="transition-delay:0.3s">
+          <div class="for-who-icon">
+            <i class="fa-solid fa-stopwatch"></i>
+          </div>
+          <h3 class="for-who-card-title">Дневно натоварване</h3>
+          <p class="for-who-card-text">
+            6 - 8 ч. ходене
+          </p>
+        </div>
+        <div class="for-who-card reveal" style="transition-delay:0.4s">
+          <div class="for-who-icon">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+          </div>
+          <h3 class="for-who-card-title">Денивелация</h3>
+          <p class="for-who-card-text">
+            между 300 и 1000 м изкачване
+          </p>
+        </div>
+        <div class="for-who-card reveal" style="transition-delay:0.5s">
+          <div class="for-who-icon">
+            <i class="fa-solid fa-mountain"></i>
+          </div>
+          <h3 class="for-who-card-title">Терен</h3>
+          <p class="for-who-card-text">
+            горски и планински пътеки, скалисти участъци
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       5. ПРОГРАМА — Timeline
+  ══════════════════════════════════════════════════ -->
+  <section id="timeline">
+    <div class="container">
+      <div class="timeline-header reveal">
+        <p class="section-label">Пет дни приключение</p>
+        <h2 class="section-title">Програмата</h2>
+        <p>Базов лагер: хижа Мальовица.</p>
+      </div>
+
+      <div class="timeline-track">
+
+        <!-- Ден 1 — odd -->
+        <div class="tl-item odd reveal">
+          <div class="tl-left"></div>
+          <div class="tl-dot">
+            <div class="tl-dot-circle"></div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-card">
+              <div class="tl-card-img">
+                <img src="images/day-1.jpg" alt="Ден 1" onerror="this.style.display='none'">
+                <div class="img-placeholder"><i class="fa-solid fa-bus"></i></div>
+              </div>
+              <div class="tl-card-body">
+                <p class="tl-day-num">Ден 1 &nbsp;·&nbsp; Петък</p>
+                <h3>До хижа Мальовица</h3>
+                <p>
+                  Тръгва от Варна, пристигане в района на хижа Мальовица. Разпределение
+                  по стаи, запознанство с правилата, кратка разходка по близкото трасе за
+                  адаптация към надморската височина.
+                </p>
+                <div class="tl-meta">
+                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~2 км</span>
+                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~1 ч</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~80 м</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ден 2 — even -->
+        <div class="tl-item even reveal">
+          <div class="tl-left">
+            <div class="tl-card">
+              <div class="tl-card-img">
+                <img src="images/day-2.jpg" alt="Ден 2" onerror="this.style.display='none'">
+                <div class="img-placeholder"><i class="fa-solid fa-water"></i></div>
+              </div>
+              <div class="tl-card-body">
+                <p class="tl-day-num">Ден 2 &nbsp;·&nbsp; Събота</p>
+                <h3>Заслон Бак</h3>
+                <p>
+                  Изкачване по синия маркировъчен улей към Заслон Бак. Скалист участък
+                  в горната третина. Гледка към Мальовишките езера отгоре. Слизане
+                  по същия маршрут.
+                </p>
+                <div class="tl-meta">
+                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~9 км</span>
+                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~5 ч</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~380 м</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tl-dot">
+            <div class="tl-dot-circle"></div>
+          </div>
+          <div class="tl-right"></div>
+        </div>
+
+        <!-- Ден 3 — odd -->
+        <div class="tl-item odd reveal">
+          <div class="tl-left"></div>
+          <div class="tl-dot">
+            <div class="tl-dot-circle"></div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-card">
+              <div class="tl-card-img">
+                <img src="images/day-3.jpg" alt="Ден 3" onerror="this.style.display='none'">
+                <div class="img-placeholder"><i class="fa-solid fa-droplet"></i></div>
+              </div>
+              <div class="tl-card-body">
+                <p class="tl-day-num">Ден 3 &nbsp;·&nbsp; Неделя</p>
+                <h3>Страшното езеро</h3>
+                <p>
+                  Преход до Страшното езеро по маркиран маршрут над хижата.
+                  Ливаден терен с постепенно изкачване. Почивка при езерото,
+                  обяд на терен. Слизане по същия маршрут.
+                </p>
+                <div class="tl-meta">
+                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~10 км</span>
+                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~5 ч</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~310 м</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ден 4 — even -->
+        <div class="tl-item even reveal">
+          <div class="tl-left">
+            <div class="tl-card">
+              <div class="tl-card-img">
+                <img src="images/day-4.jpg" alt="Ден 4" onerror="this.style.display='none'">
+                <div class="img-placeholder"><i class="fa-solid fa-flag"></i></div>
+              </div>
+              <div class="tl-card-body">
+                <p class="tl-day-num">Ден 4 &nbsp;·&nbsp; Понеделник</p>
+                <h3>Вр. Мальовица — 2729 м</h3>
+                <p>
+                  Изкачване до връх Мальовица по стандартния маршрут. Най-дългият
+                  и технически по-труден ден. Скалист гребен в горната половина.
+                  Тръгване рано сутринта.
+                </p>
+                <div class="tl-meta">
+                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~12 км</span>
+                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~6 ч</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~770 м</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tl-dot">
+            <div class="tl-dot-circle"></div>
+          </div>
+          <div class="tl-right"></div>
+        </div>
+
+        <!-- Ден 5 — odd -->
+        <div class="tl-item odd reveal">
+          <div class="tl-left"></div>
+          <div class="tl-dot">
+            <div class="tl-dot-circle"></div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-card">
+              <div class="tl-card-body" style="padding-top:24px">
+                <p class="tl-day-num">Ден 5 &nbsp;·&nbsp; Вторник</p>
+                <h3>Отпътуване</h3>
+                <p>
+                  Сутринта: закуска, освобождаване на стаите. Тръгване от хижата
+                  и пристигане във Варна в обедните часове.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="timeline-disclaimer"
+        style="text-align: center; margin-top: 48px; padding: 24px; background: rgba(56, 178, 172, 0.05); border-radius: 12px; border: 1px solid rgba(56, 178, 172, 0.1);">
+        <p style="margin: 0; font-size: 15px; color: var(--text-soft);">
+          <i class="fa-solid fa-circle-info" style="color: var(--teal); margin-right: 8px;"></i>
+          <strong>Възможни са промени в програмата</strong> според метеорологичните условия и състоянието на групата.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       6. НИВО И ФИЗИЧЕСКО НАТОВАРВАНЕ
+  ══════════════════════════════════════════════════ -->
+  <section id="level">
+    <div class="container">
+      <div class="level-header reveal" style="text-align: center;">
+        <p class="section-label">Ниво и очаквания</p>
+        <h2 class="section-title">За кого е този лагер</h2>
+        <p>
+          Лагерът е подходящ за участници, които обичат движението сред природата и са готови за няколко последователни
+          дни с планински преходи. Програмата включва постепенно увеличаване на натоварването и изисква издръжливост,
+          внимание към терена и готовност за движение в група.
+
+          Предишен опит в планинарството не е задължителен. Лагерът е подходящ и за хора, които искат да опитат нещо
+          ново, имат приключенски дух и са готови да се изправят пред трудности и да излязат извън обичайната си зона на
+          комфорт.
+        </p>
+      </div>
+
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       7. НАСТАНЯВАНЕ — Хижата
+  ══════════════════════════════════════════════════ -->
+  <section id="hut">
+    <div class="container">
+      <div class="hut-inner">
+        <div class="hut-image-wrap reveal">
+          <img src="images/hut.jpg" alt="Хижа Мальовица" onerror="this.style.display='none'">
+          <div class="img-placeholder"><i class="fa-solid fa-house-chimney"></i></div>
+        </div>
+        <div class="hut-text reveal" style="transition-delay:0.15s">
+
+          <p class="section-label">Настаняване</p>
+          <h2 class="section-title">Хижа Мальовица</h2>
+          <p style="margin-top:16px">
+            Хижата е триетажна постройка с просторна столова на първи етаж и спални
+            помещения на горните два етажа. Разстоянието от края на асфалтовия път до
+            нея се изминава за около 45–50 минути — изкачването е леко, върви се по
+            широк път или по пътеката.
+          </p>
+          <p>
+            Вторият етаж е изцяло реновиран — стаите са с подменени подови настилки
+            и дограма, нови легла, чаршафи и одеала. Ремонтирани са и двете тоалетни
+            на етажа, има и баня с топла вода.
+          </p>
+          <div class="hut-details">
+            <div class="hut-detail-row">
+              <i class="fa-solid fa-bed"></i>
+              <span>Многоместни стаи с двуетажни легла</span>
+            </div>
+            <div class="hut-detail-row">
+              <i class="fa-solid fa-shower"></i>
+              <span>Общи санитарни помещения</span>
+            </div>
+            <div class="hut-detail-row">
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       8. ВОДАЧЪТ
+  ══════════════════════════════════════════════════ -->
+  <section id="guide">
+    <div class="container">
+      <div class="guide-inner">
+        <div class="guide-photo-wrap reveal">
+          <div class="guide-photo">
+            <img src="images/guide.jpg" alt="Планински водач" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="guide-text reveal" style="transition-delay:0.15s">
+          <p class="section-label">Планински водач</p>
+          <h2 class="section-title">Стамен Тодоров</h2>
+          <p>
+            Лицензиран планински водач и инструктор в множество приключенски програми за деца
+            и възрастни, които най-често включват планински преходи, лагери сред природата,
+            екстремни предизвикателства и обучения чрез преживяване, свързани не само с природата,
+            но и със социалните умения и групови динамики.
+          </p>
+          <p>
+            Интересите му включват катерене, алпинизъм, фотография, ски туринг и психология.
+            За Стамен природата е най-подходящата среда за преживелищно учене и развитие.
+          </p>
+          <p>
+            Има над 11 години опит в работата с деца и младежи. Многобройните преходи,
+            изкачвания и предизвикателства в планината постоянно му доказват колко силни
+            и стойностни са срещите там – с природата, с околните и със себе си.
+          </p>
+        </div>
+      </div>
+      <p
+        style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border);">
+        Програмата се организира и провежда от туроператор <strong>ТВОРИ ООД</strong> с удостоверение
+        <strong>РК-01-8446</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       9. ГАЛЕРИЯ
+  ══════════════════════════════════════════════════ -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header reveal">
+        <p class="section-label">Снимки</p>
+        <h2 class="section-title">Галерия</h2>
+      </div>
+      <div class="gallery-masonry">
+        <div class="gallery-item reveal">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-1.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <div class="gallery-item reveal" style="transition-delay:0.08s">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-2.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <div class="gallery-item reveal" style="transition-delay:0.16s">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-3.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <div class="gallery-item reveal" style="transition-delay:0.24s">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-4.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <div class="gallery-item reveal" style="transition-delay:0.32s">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-5.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <div class="gallery-item reveal" style="transition-delay:0.40s">
+          <div class="gallery-item-inner">
+            <img src="images/gallery-6.jpg" alt="" onerror="this.style.display='none'">
+            <div class="img-placeholder"><i class="fa-solid fa-image"></i></div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       10. ПРАКТИЧЕСКА ИНФОРМАЦИЯ
+  ══════════════════════════════════════════════════ -->
+  <section id="practical">
+    <div class="container">
+      <div class="practical-header reveal">
+        <p class="section-label">Информация за участие</p>
+        <h2 class="section-title">Детайли за лагера</h2>
+      </div>
+      <div class="practical-grid">
+
+        <div class="practical-card reveal">
+          <div class="practical-card-title">
+            <i class="fa-solid fa-calendar-days"></i>
+            Дати и цена
+          </div>
+          <table class="practical-table">
+            <tr>
+              <td>Дати</td>
+              <td>1–5 май 2026</td>
+            </tr>
+            <tr>
+              <td>Продължителност</td>
+              <td>5 дни / 4 нощи</td>
+            </tr>
+            <tr>
+              <td>Краен срок за записване</td>
+              <td>10 април 2026</td>
+            </tr>
+            <tr>
+              <td>Цена (до 14 участника)</td>
+              <td><span class="practical-highlight">320 евро</span></td>
+            </tr>
+            <tr>
+              <td>Цена (над 14 участника)</td>
+              <td><span class="practical-highlight">300 евро</span></td>
+            </tr>
+            <tr>
+              <td>Капаро</td>
+              <td>100 евро при потвърждение</td>
+            </tr>
+            <tr>
+              <td>Остатък</td>
+              <td>До 25 април 2026</td>
+            </tr>
+            <tr>
+              <td>Начин на плащане</td>
+              <td>Банков превод</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="practical-card reveal" style="transition-delay:0.12s">
+          <div class="practical-card-title">
+            <i class="fa-solid fa-list-check"></i>
+            Цената включва / не включва
+          </div>
+          <table class="practical-table">
+            <tr>
+              <td>Включва</td>
+              <td>Нощувки (4 нощи), три хранения на ден, планинска застраховка, водач, транспорт от и до Варна</td>
+            </tr>
+            <tr>
+              <td>Не включва</td>
+              <td>Лични разходи</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       11. ЕКИПИРОВКА
+  ══════════════════════════════════════════════════ -->
+  <section id="gear">
+    <div class="container">
+      <div class="gear-header reveal">
+        <p class="section-label">Подготовка</p>
+        <h2 class="section-title">Списък с екипировка</h2>
+        <p>Целта е раницата да бъде лека, но подготвена за всичко необходимо по време на лагера.</p>
+      </div>
+      <div class="gear-grid">
+
+        <div class="gear-card mandatory reveal">
+          <div class="gear-card-title">
+            <i class="fa-solid fa-circle-check"></i>
+            Задължително
+          </div>
+          <ul class="gear-list">
+            <li><i class="fa-solid fa-check"></i> Туристическа раница 30–45 л.</li>
+            <li><i class="fa-solid fa-check"></i> Туристически обувки или удобни маратонки (препоръчително е да обхващат
+              глезена)</li>
+            <li><i class="fa-solid fa-check"></i> Яке — ветро и водоустойчиво</li>
+            <li><i class="fa-solid fa-check"></i> Полар / топли дрехи</li>
+            <li><i class="fa-solid fa-check"></i> Тънки ръкавици</li>
+            <li><i class="fa-solid fa-check"></i> Дълъг панталон (и втори, който може да е къс)</li>
+            <li><i class="fa-solid fa-check"></i> Тениски</li>
+            <li><i class="fa-solid fa-check"></i> Бельо</li>
+            <li><i class="fa-solid fa-check"></i> Чорапи — 3–4 чифта</li>
+            <li><i class="fa-solid fa-check"></i> Малка кърпа / хавлийка</li>
+            <li><i class="fa-solid fa-check"></i> Дъждобран — пончо (да покрива и раницата)</li>
+            <li><i class="fa-solid fa-check"></i> Шапка за слънце</li>
+            <li><i class="fa-solid fa-check"></i> Бъф / топла шапка</li>
+            <li><i class="fa-solid fa-check"></i> Слънчеви очила</li>
+            <li><i class="fa-solid fa-check"></i> Слънцезащитен крем (може да е споделен)</li>
+            <li><i class="fa-solid fa-check"></i> Челник + резервни батерии (или фенерче)</li>
+            <li><i class="fa-solid fa-check"></i> Бутилка(и) за вода с вместимост поне 1.5 л.</li>
+            <li><i class="fa-solid fa-check"></i> Канче</li>
+            <li><i class="fa-solid fa-check"></i> Лична аптечка (лепенки, бинт)</li>
+            <li><i class="fa-solid fa-check"></i> Лични документи</li>
+            <li><i class="fa-solid fa-check"></i> Зареден телефон</li>
+            <li><i class="fa-solid fa-check"></i> Др. лични вещи</li>
+            <li><i class="fa-solid fa-check"></i> Енергийна храна (ядки, барчета, шоколад, сушени плодове и др.)</li>
+            <li><i class="fa-solid fa-check"></i> Кутия за храна</li>
+          </ul>
+        </div>
+
+        <div class="gear-card optional reveal" style="transition-delay:0.12s">
+          <div class="gear-card-title">
+            <i class="fa-regular fa-circle-check"></i>
+            Препоръчително
+          </div>
+          <ul class="gear-list">
+            <li><i class="fa-solid fa-circle"></i> Щеки</li>
+            <li><i class="fa-solid fa-circle"></i> Много леки чехли или сандали за хижата</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       12. ФОРМА ЗА УЧАСТИЕ
+  ══════════════════════════════════════════════════ -->
+  <section id="register">
+    <div class="container">
+
+      <div class="register-header reveal">
+        <p class="section-label">Записване</p>
+        <h2 class="section-title">Формуляр за участие</h2>
+      </div>
+
+      <form class="reg-form reveal" action="#" method="POST" novalidate>
+
+        <!-- ── Участник ── -->
+        <div class="form-section">
+          <p class="form-section-label"><i class="fa-solid fa-child-reaching"></i> Участник</p>
+
+          <div class="form-row cols-1">
+            <div class="form-field">
+              <label for="f-name">Три имена</label>
+              <input type="text" id="f-name" name="name" required placeholder="Иван Петров Георгиев"
+                autocomplete="name">
+            </div>
+          </div>
+
+          <div class="form-row cols-2">
+            <div class="form-field">
+              <label for="f-phone">Телефон</label>
+              <input type="tel" id="f-phone" name="phone" required placeholder="+359 88 …" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="f-email">Имейл</label>
+              <input type="email" id="f-email" name="email" required placeholder="ivan@example.com"
+                autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-row cols-2">
+            <div class="form-field">
+              <label for="f-school">Училище</label>
+              <input type="text" id="f-school" name="school" required placeholder="Народно училище „…"">
+            </div>
+            <div class=" form-field">
+              <label for="f-grade">Клас</label>
+              <select id="f-grade" name="grade" required>
+                <option value="" disabled selected>— избери —</option>
+                <option>4. клас</option>
+                <option>5. клас</option>
+                <option>6. клас</option>
+                <option>7. клас</option>
+                <option>8. клас</option>
+                <option>9. клас</option>
+                <option>10. клас</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row cols-1">
+            <div class="form-field">
+              <label>Изисквания към менюто</label>
+              <div class="radio-group" style="margin-top:4px">
+                <label class="radio-option">
+                  <input type="radio" name="menu" value="none" checked>
+                  <i class="fa-solid fa-check" style="font-size:12px"></i> Нямам
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="menu" value="vegetarian">
+                  <i class="fa-solid fa-leaf" style="font-size:12px"></i> Вегетарианско
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- ── Медицинска и лична информация ── -->
+        <div class="form-section">
+          <p class="form-section-label"><i class="fa-solid fa-shield-heart"></i> Здраве &amp; лична информация</p>
+
+          <div class="form-row cols-2">
+            <div class="form-field">
+              <label for="f-egn">ЕГН</label>
+              <input type="text" id="f-egn" name="egn" required placeholder="XXXXXXXXXX" maxlength="10"
+                inputmode="numeric">
+              <p class="form-hint"><i class="fa-solid fa-circle-info" style="font-size:10px"></i> Необходимо за
+                сключване на планинска застраховка</p>
+            </div>
+          </div>
+
+          <div class="form-row cols-2">
+            <div class="form-field">
+              <label for="f-addr-city">Град</label>
+              <input type="text" id="f-addr-city" name="addr_city" required placeholder="гр. София"
+                autocomplete="address-level2">
+            </div>
+            <div class="form-field">
+              <label for="f-addr-postcode">Пощенски код</label>
+              <input type="text" id="f-addr-postcode" name="addr_postcode" required placeholder="1000" maxlength="10"
+                inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="form-row cols-1">
+            <div class="form-field">
+              <label for="f-addr-street">Квартал / Улица</label>
+              <input type="text" id="f-addr-street" name="addr_street" required placeholder="кв. Лозенец, ул. „Шипка"
+                №12" autocomplete="address-line1">
+            </div>
+          </div>
+
+          <div class="form-row cols-1">
+            <div class="form-field">
+              <label for="f-health">Здравословни особености</label>
+              <textarea id="f-health" name="health" required
+                placeholder="Алергии, хронични заболявания, прием на лекарства или друго, за което трябва да сме информирани…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- ── Родител / Настойник ── -->
+        <div class="form-section">
+          <p class="form-section-label"><i class="fa-solid fa-user-tie"></i> Родител / Настойник</p>
+
+          <div class="form-row cols-1">
+            <div class="form-field">
+              <label for="f-parent-name">Три имена</label>
+              <input type="text" id="f-parent-name" name="parent_name" required placeholder="Петър Георгиев Иванов">
+            </div>
+          </div>
+
+          <div class="form-row cols-2">
+            <div class="form-field">
+              <label for="f-parent-phone">Телефон</label>
+              <input type="tel" id="f-parent-phone" name="parent_phone" required placeholder="+359 88 …"
+                autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="f-parent-email">Имейл</label>
+              <input type="email" id="f-parent-email" name="parent_email" required placeholder="parent@example.com"
+                autocomplete="email">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- ── GDPR ── -->
+        <div class="form-section" style="margin-bottom:0">
+          <p class="form-section-label"><i class="fa-solid fa-lock"></i> Обработка на лични данни</p>
+          <div class="gdpr-row">
+            <input type="checkbox" id="f-gdpr" name="gdpr" required>
+            <label for="f-gdpr">
+              Давам съгласие предоставените от мен лични данни да бъдат обработвани от
+              <strong>Планински Чудеса</strong> за целите на организацията на лагера, в съответствие с
+              <a href="#">Политиката за поверителност</a>. Данните няма да бъдат предоставяни на трети страни
+              без изричното ми съгласие.
+            </label>
+          </div>
+        </div>
+
+        <!-- ── Submit ── -->
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">
+            Изпрати заявлението &nbsp;<i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       ТУРОПЕРАТОР
+  ══════════════════════════════════════════════════ -->
+  <section id="tour-operator" style="padding: 48px 0; background: var(--bg-soft);">
+    <div class="container" style="text-align: center;">
+      <p
+        style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;">
+        Организатор</p>
+      <p style="font-size: 16px; font-weight: 600; color: var(--text); margin: 0;">
+        Програмата се организира и провежда от туроператор <strong>ТВОРИ ООД</strong> с удостоверение
+        <strong>РК-01-8446</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       14. FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">Планински Чудеса</span>
+        <span class="footer-contact">
+          <a href="mailto:info@planinskichudesa.bg">info@planinskichudesa.bg</a>
+        </span>
+        <span class="footer-copy">&copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════
+       JS
+  ══════════════════════════════════════════════════ -->
+  <script>
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Hero image ── */
+    const heroBg = document.getElementById('heroBg');
+    const heroImg = heroBg.querySelector('img');
+    if (heroImg) {
+      heroImg.addEventListener('load', () => heroBg.classList.add('has-image'));
+      if (heroImg.complete && heroImg.naturalWidth > 0) heroBg.classList.add('has-image');
+    }
+
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
