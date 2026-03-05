@@ -189,6 +189,26 @@
       transform: translateY(-1px);
     }
 
+    /* ─── Mobile adjustments for header ───────────────────────────────────── */
+    @media (max-width: 600px) {
+      /* allow items to wrap and add a small gap to avoid overlap */
+      .nav-inner {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      /* shrink logo text */
+      .nav-logo {
+        font-size: 15px;
+      }
+
+      /* shrink call‑to‑action button */
+      .nav-cta {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+    }
+
     /* ════════════════════════════════════════════════════════════
        2. HERO
     ════════════════════════════════════════════════════════════ */
