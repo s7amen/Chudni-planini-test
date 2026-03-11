@@ -189,26 +189,6 @@
       transform: translateY(-1px);
     }
 
-    /* ─── Mobile adjustments for header ───────────────────────────────────── */
-    @media (max-width: 600px) {
-      /* allow items to wrap and add a small gap to avoid overlap */
-      .nav-inner {
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      /* shrink logo text */
-      .nav-logo {
-        font-size: 15px;
-      }
-
-      /* shrink call‑to‑action button */
-      .nav-cta {
-        font-size: 12px;
-        padding: 8px 16px;
-      }
-    }
-
     /* ════════════════════════════════════════════════════════════
        2. HERO
     ════════════════════════════════════════════════════════════ */
@@ -541,20 +521,42 @@
       background: var(--bg-section);
     }
 
-    .level-header {
-      margin-bottom: 48px;
+    .level-inner {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 72px;
+      align-items: center;
     }
 
-    .level-header .section-title {
+    .level-text .section-title {
       font-size: clamp(26px, 3.5vw, 36px);
+      margin-bottom: 20px;
     }
 
-    .level-header p {
+    .level-text p {
       font-size: 16px;
       color: var(--text-soft);
-      margin: 16px auto 0;
-      max-width: 720px;
-      line-height: 1.6;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .level-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .level-image-wrap {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      position: relative;
+    }
+
+    .level-image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .expectations-grid {
@@ -1722,7 +1724,7 @@
               <i class="fa-solid fa-circle"></i>
               <i class="fa-solid fa-circle"></i>
               <i class="fa-solid fa-circle"></i>
-              <i class="fa-solid fa-circle-half-stroke"></i>
+              <i class="fa-regular fa-circle" style="opacity:0.7;"></i>
               <i class="fa-regular fa-circle" style="opacity:0.7;"></i>
             </div>
           </div>
@@ -1748,15 +1750,16 @@
           <p class="section-label">Пътеката като учител</p>
           <h2 class="section-title">Опит, който се изгражда крачка по крачка</h2>
           <p style="margin-top:20px">
-            Защото е различно да си в планината, отколкото да четеш или слушаш за нея. Там всяка крачка има значение,
+            Вярваме, че времето, прекарано сред природата, е безценен дар. Вярваме, че
+планината предлага не само красиви гледки, но и възможност за дълбока връзка
+със себе си, другите и със света около нас. Там всяка крачка има значение,
             всяко изкачване изисква усилие, а всяка почивка се усеща заслужена.
           </p>
           <p>
-            Лагерът дава възможност да провериш колко можеш, да се научиш да се движиш уверено по пътека и да бъдеш част
-            от група, в която хората разчитат един на друг.
+            Лагерът дава възможност всеки да провери това за себе си, да се предизвика и да изследва планинските пътеки като част от група, в която хората разчитат един на друг.
           </p>
           <p>
-            Това не е състезание, а преживяване, в което постепенно разбираш повече
+            Това не е състезание, а преживяване, в което постепенно всеки разбира повече
             за собствените си възможности.
           </p>
         </div>
@@ -1773,7 +1776,7 @@
   <section id="for-who">
     <div class="container">
       <div class="for-who-header reveal" style="text-align: center; max-width: 680px; margin: 0 auto 48px;">
-        <p class="section-label">текст</p>
+        <p class="section-label">къде и как</p>
         <h2 class="section-title">Лагерът накратко</h2>
       </div>
       <div class="for-who-grid">
@@ -1792,7 +1795,8 @@
           </div>
           <h3 class="for-who-card-title">Продължителност</h3>
           <p class="for-who-card-text">
-            5 дни / 4 нощи
+            5 дни / 4 нощи<br>
+            1–5 май 2026
           </p>
         </div>
         <div class="for-who-card reveal" style="transition-delay:0.2s">
@@ -1801,25 +1805,27 @@
           </div>
           <h3 class="for-who-card-title">Преходи</h3>
           <p class="for-who-card-text">
-            3 дни в алпийската част на Рила
+            3 пълни дни в алпийската част на Рила
           </p>
         </div>
         <div class="for-who-card reveal" style="transition-delay:0.3s">
           <div class="for-who-icon">
-            <i class="fa-solid fa-stopwatch"></i>
+            <i class="fa-solid fa-bolt"></i>
           </div>
           <h3 class="for-who-card-title">Дневно натоварване</h3>
           <p class="for-who-card-text">
-            6 - 8 ч. ходене
+            6 – 8 ч. ходене<br>
+            <span style="margin-top:6px; display:inline-block;">300 – 1000 м денивелация</span>
           </p>
         </div>
         <div class="for-who-card reveal" style="transition-delay:0.4s">
           <div class="for-who-icon">
-            <i class="fa-solid fa-arrow-trend-up"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
-          <h3 class="for-who-card-title">Денивелация</h3>
-          <p class="for-who-card-text">
-            между 300 и 1000 м изкачване
+          <h3 class="for-who-card-title">Основни акценти</h3>
+          <p class="for-who-card-text" style="line-height:2;">
+            вр. Мальовица<br>
+            Страшното езеро, БАК
           </p>
         </div>
         <div class="for-who-card reveal" style="transition-delay:0.5s">
@@ -1828,7 +1834,7 @@
           </div>
           <h3 class="for-who-card-title">Терен</h3>
           <p class="for-who-card-text">
-            горски и планински пътеки, скалисти участъци
+            Горски и планински пътеки, скалисти участъци
           </p>
         </div>
       </div>
@@ -1843,7 +1849,7 @@
       <div class="timeline-header reveal">
         <p class="section-label">Пет дни приключение</p>
         <h2 class="section-title">Програмата</h2>
-        <p>Базов лагер: хижа Мальовица.</p>
+
       </div>
 
       <div class="timeline-track">
@@ -1864,14 +1870,10 @@
                 <p class="tl-day-num">Ден 1 &nbsp;·&nbsp; Петък</p>
                 <h3>До хижа Мальовица</h3>
                 <p>
-                  Тръгва от Варна, пристигане в района на хижа Мальовица. Разпределение
-                  по стаи, запознанство с правилата, кратка разходка по близкото трасе за
-                  адаптация към надморската височина.
+                  Пътуване с влак от Варна до Костенец. Трансфер с автобус до ЦПШ Мальовица. Преход до хижа Мальовица.
                 </p>
                 <div class="tl-meta">
-                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~2 км</span>
-                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~1 ч</span>
-                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~80 м</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> 300 м</span>
                 </div>
               </div>
             </div>
@@ -1890,14 +1892,11 @@
                 <p class="tl-day-num">Ден 2 &nbsp;·&nbsp; Събота</p>
                 <h3>Заслон Бак</h3>
                 <p>
-                  Изкачване по синия маркировъчен улей към Заслон Бак. Скалист участък
-                  в горната третина. Гледка към Мальовишките езера отгоре. Слизане
-                  по същия маршрут.
+                  Преход до заслон Бак. При подходящи условия – ще направим допълнително изскачване в района. Скалист
+                  участък във финалната част и гледка към връх Мальовица и долината.
                 </p>
                 <div class="tl-meta">
-                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~9 км</span>
-                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~5 ч</span>
-                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~380 м</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> 600 м</span>
                 </div>
               </div>
             </div>
@@ -1924,14 +1923,11 @@
                 <p class="tl-day-num">Ден 3 &nbsp;·&nbsp; Неделя</p>
                 <h3>Страшното езеро</h3>
                 <p>
-                  Преход до Страшното езеро по маркиран маршрут над хижата.
-                  Ливаден терен с постепенно изкачване. Почивка при езерото,
-                  обяд на терен. Слизане по същия маршрут.
+                  Преход до Страшното езеро. Според условията маршрутът може да бъде кръгов или с връщане по същата
+                  пътека.
                 </p>
                 <div class="tl-meta">
-                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~10 км</span>
-                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~5 ч</span>
-                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~310 м</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> 600 м</span>
                 </div>
               </div>
             </div>
@@ -1950,14 +1946,10 @@
                 <p class="tl-day-num">Ден 4 &nbsp;·&nbsp; Понеделник</p>
                 <h3>Вр. Мальовица — 2729 м</h3>
                 <p>
-                  Изкачване до връх Мальовица по стандартния маршрут. Най-дългият
-                  и технически по-труден ден. Скалист гребен в горната половина.
-                  Тръгване рано сутринта.
+                  Изкачване до връх Мальовица по стандартния маршрут и заслужени гледки при добро време.
                 </p>
                 <div class="tl-meta">
-                  <span class="tl-tag"><i class="fa-solid fa-person-walking"></i> ~12 км</span>
-                  <span class="tl-tag"><i class="fa-solid fa-clock"></i> ~6 ч</span>
-                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> ~770 м</span>
+                  <span class="tl-tag"><i class="fa-solid fa-arrow-up"></i> 750 м</span>
                 </div>
               </div>
             </div>
@@ -1980,8 +1972,7 @@
                 <p class="tl-day-num">Ден 5 &nbsp;·&nbsp; Вторник</p>
                 <h3>Отпътуване</h3>
                 <p>
-                  Сутринта: закуска, освобождаване на стаите. Тръгване от хижата
-                  и пристигане във Варна в обедните часове.
+                  Преход до ЦПШ Мальовица. Трансфер до Костенец и отпътуване за Варна с влак.
                 </p>
               </div>
             </div>
@@ -2005,21 +1996,26 @@
   ══════════════════════════════════════════════════ -->
   <section id="level">
     <div class="container">
-      <div class="level-header reveal" style="text-align: center;">
-        <p class="section-label">Ниво и очаквания</p>
-        <h2 class="section-title">За кого е този лагер</h2>
-        <p>
-          Лагерът е подходящ за участници, които обичат движението сред природата и са готови за няколко последователни
-          дни с планински преходи. Програмата включва постепенно увеличаване на натоварването и изисква издръжливост,
-          внимание към терена и готовност за движение в група.
-
-          Предишен опит в планинарството не е задължителен. Лагерът е подходящ и за хора, които искат да опитат нещо
-          ново, имат приключенски дух и са готови да се изправят пред трудности и да излязат извън обичайната си зона на
-          комфорт.
-        </p>
+      <div class="level-inner">
+        <div class="level-text reveal">
+          <p class="section-label">Ниво и очаквания</p>
+          <h2 class="section-title">За кого е<br>този лагер</h2>
+          <p>
+            Лагерът е подходящ за участници, които обичат движението сред природата и са готови за няколко
+            последователни дни с планински преходи. Програмата включва постепенно увеличаване на натоварването
+            и изисква издръжливост, внимание към терена и готовност за движение в група.
+          </p>
+          <p>
+            Предишен опит в планинарството не е задължителен. Лагерът е подходящ и за хора, които искат да
+            опитат нещо ново, имат приключенски дух и са готови да се изправят пред трудности и да излязат
+            извън обичайната си зона на комфорт.
+          </p>
+        </div>
+        <div class="level-image-wrap reveal" style="transition-delay:0.15s">
+          <img src="images/forwho.jpg" alt="За кого е лагерът" onerror="this.style.display='none'">
+        </div>
       </div>
-
-
+    </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════
@@ -2165,8 +2161,8 @@
   <section id="practical">
     <div class="container">
       <div class="practical-header reveal">
-        <p class="section-label">Информация за участие</p>
-        <h2 class="section-title">Детайли за лагера</h2>
+        <p class="section-label">Информация</p>
+        <h2 class="section-title">Участие</h2>
       </div>
       <div class="practical-grid">
 
@@ -2300,8 +2296,8 @@
     <div class="container">
 
       <div class="register-header reveal">
-        <p class="section-label">Записване</p>
-        <h2 class="section-title">Формуляр за участие</h2>
+        <p class="section-label">Формуляр за участие </p>
+        <h2 class="section-title">Записване</h2>
       </div>
 
       <form class="reg-form reveal" action="#" method="POST" novalidate>
@@ -2313,53 +2309,34 @@
           <div class="form-row cols-1">
             <div class="form-field">
               <label for="f-name">Три имена</label>
-              <input type="text" id="f-name" name="name" required placeholder="Иван Петров Георгиев"
-                autocomplete="name">
+              <input type="text" id="f-name" name="name" required placeholder="Вашите три имена" autocomplete="name">
             </div>
           </div>
 
           <div class="form-row cols-2">
             <div class="form-field">
               <label for="f-phone">Телефон</label>
-              <input type="tel" id="f-phone" name="phone" required placeholder="+359 88 …" autocomplete="tel">
+              <input type="tel" id="f-phone" name="phone" required placeholder="Вашият телефонен номер"
+                autocomplete="tel">
             </div>
             <div class="form-field">
               <label for="f-email">Имейл</label>
-              <input type="email" id="f-email" name="email" required placeholder="ivan@example.com"
-                autocomplete="email">
+              <input type="email" id="f-email" name="email" required placeholder="Вашият имейл" autocomplete="email">
             </div>
           </div>
 
-          <div class="form-row cols-2">
-            <div class="form-field">
-              <label for="f-school">Училище</label>
-              <input type="text" id="f-school" name="school" required placeholder="Народно училище „…"">
-            </div>
-            <div class=" form-field">
-              <label for="f-grade">Клас</label>
-              <select id="f-grade" name="grade" required>
-                <option value="" disabled selected>— избери —</option>
-                <option>4. клас</option>
-                <option>5. клас</option>
-                <option>6. клас</option>
-                <option>7. клас</option>
-                <option>8. клас</option>
-                <option>9. клас</option>
-                <option>10. клас</option>
-              </select>
-            </div>
-          </div>
+
 
           <div class="form-row cols-1">
             <div class="form-field">
               <label>Изисквания към менюто</label>
               <div class="radio-group" style="margin-top:4px">
                 <label class="radio-option">
-                  <input type="radio" name="menu" value="none" checked>
+                  <input type="radio" name="menu" value="none" required>
                   <i class="fa-solid fa-check" style="font-size:12px"></i> Нямам
                 </label>
                 <label class="radio-option">
-                  <input type="radio" name="menu" value="vegetarian">
+                  <input type="radio" name="menu" value="vegetarian" required>
                   <i class="fa-solid fa-leaf" style="font-size:12px"></i> Вегетарианско
                 </label>
               </div>
@@ -2376,7 +2353,7 @@
           <div class="form-row cols-2">
             <div class="form-field">
               <label for="f-egn">ЕГН</label>
-              <input type="text" id="f-egn" name="egn" required placeholder="XXXXXXXXXX" maxlength="10"
+              <input type="text" id="f-egn" name="egn" required placeholder="ЕГН на участника" maxlength="10"
                 inputmode="numeric">
               <p class="form-hint"><i class="fa-solid fa-circle-info" style="font-size:10px"></i> Необходимо за
                 сключване на планинска застраховка</p>
@@ -2386,21 +2363,21 @@
           <div class="form-row cols-2">
             <div class="form-field">
               <label for="f-addr-city">Град</label>
-              <input type="text" id="f-addr-city" name="addr_city" required placeholder="гр. София"
+              <input type="text" id="f-addr-city" name="addr_city" required placeholder="Населено място"
                 autocomplete="address-level2">
             </div>
             <div class="form-field">
               <label for="f-addr-postcode">Пощенски код</label>
-              <input type="text" id="f-addr-postcode" name="addr_postcode" required placeholder="1000" maxlength="10"
-                inputmode="numeric">
+              <input type="text" id="f-addr-postcode" name="addr_postcode" required placeholder="Пощенски код"
+                maxlength="10" inputmode="numeric">
             </div>
           </div>
 
           <div class="form-row cols-1">
             <div class="form-field">
               <label for="f-addr-street">Квартал / Улица</label>
-              <input type="text" id="f-addr-street" name="addr_street" required placeholder="кв. Лозенец, ул. „Шипка"
-                №12" autocomplete="address-line1">
+              <input type="text" id="f-addr-street" name="addr_street" required placeholder="Точен адрес (кв., ул., №)"
+                autocomplete="address-line1">
             </div>
           </div>
 
@@ -2422,19 +2399,19 @@
           <div class="form-row cols-1">
             <div class="form-field">
               <label for="f-parent-name">Три имена</label>
-              <input type="text" id="f-parent-name" name="parent_name" required placeholder="Петър Георгиев Иванов">
+              <input type="text" id="f-parent-name" name="parent_name" required placeholder="Три имена">
             </div>
           </div>
 
           <div class="form-row cols-2">
             <div class="form-field">
               <label for="f-parent-phone">Телефон</label>
-              <input type="tel" id="f-parent-phone" name="parent_phone" required placeholder="+359 88 …"
+              <input type="tel" id="f-parent-phone" name="parent_phone" required placeholder="Телефонен номер"
                 autocomplete="tel">
             </div>
             <div class="form-field">
               <label for="f-parent-email">Имейл</label>
-              <input type="email" id="f-parent-email" name="parent_email" required placeholder="parent@example.com"
+              <input type="email" id="f-parent-email" name="parent_email" required placeholder="Имейл адрес"
                 autocomplete="email">
             </div>
           </div>
